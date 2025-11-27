@@ -14,17 +14,16 @@
     engineering practices that help teams build reliable software.
   </p>
   <p class="hero-links">
-    <a href="{{ get_url(path='writing') }}">Writing</a>
-    <a href="{{ get_url(path='speaking') }}">Speaking</a>
-    <a href="{{ get_url(path='projects') }}">Projects</a>
+    <a href="/writing/">Writing</a>
+    <a href="/speaking/">Speaking</a>
+    <a href="/projects/">Projects</a>
   </p>
 </section>
 
 <section class="home-section">
   <h2>Featured Writing</h2>
   <ul class="post-list">
-    {% set writing = get_section(path="writing/_index.md") %}
-    {% for page in writing.pages | slice(end=3) %}
+    {% for page in writing_pages | slice(end=3) %}
       <li class="post-list-item">
         <a class="post-title" href="{{ page.permalink }}">{{ page.title }}</a>
         {% if page.date %}

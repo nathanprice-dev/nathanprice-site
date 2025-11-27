@@ -5,12 +5,12 @@
   <title>{% block title %}{{ config.title }}{% endblock title %}</title>
   <meta name="description" content="{{ config.description }}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="{{ get_url(path='css/main.css') }}">
+  <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
   <header class="site-header">
     <div class="container header-inner">
-      <a href="{{ config.base_url }}" class="site-title">NATHAN PRICE</a>
+      <a href="/" class="site-title">NATHAN PRICE</a>
       {% include "partials/nav.html" %}
     </div>
   </header>

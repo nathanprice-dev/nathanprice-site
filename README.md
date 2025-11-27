@@ -1,23 +1,20 @@
 # nathanprice.dev
 
-Source for my personal website built with [Zola](https://www.getzola.org/) and Tera templates.
+Static personal site for nathanprice.dev rendered with a custom Rust + [Tera](https://tera.netlify.app/) generator. Markdown content lives in `content/`, templates in `templates/`, and assets in `static/`.
 
-## Local development
+## Prerequisites
+- Rust toolchain (Cargo) installed.
 
-1. Install [Zola](https://www.getzola.org/documentation/getting-started/installation/).
-2. Run:
-
-```bash
-zola serve
-```
-
-Site will be available at http://127.0.0.1:1111.
-
-## Build
+## Local build
+Generate the static site into `public/`:
 
 ```bash
-zola build
+cargo run --release
 ```
 
-The static site is generated into the `public/` directory.
-Upload the contents of `public/` to your web server.
+Then open `public/index.html` in your browser or serve the directory with any static file server.
+
+## Development notes
+- Update Markdown content in `content/` (front matter uses TOML with `+++` delimiters).
+- HTML structure and styling live in `templates/` and `static/css/main.css`.
+- Re-run `cargo run --release` after content or template changes to refresh the generated output.
