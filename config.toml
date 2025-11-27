@@ -1,0 +1,13 @@
+base_url = "https://nathanprice.dev"
+title = "Nathan Price"
+description = "Software Architect – Distributed Systems & Analytics Infrastructure"
+compile_sass = false
+build_search_index = true
+
+[markdown]
+highlight_code = true
+highlight_theme = "base16-ocean-dark"
+render_emoji = true
+
+[extra]
+author_name = "Nathan Price"
