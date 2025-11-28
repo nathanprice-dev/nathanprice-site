@@ -1,0 +1,50 @@
+name: Build and publish static site to publish branch
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build static site
+        run: cargo run --release
+
+      - name: Prepare publish directory
+        run: |
+          rm -rf publish
+          mkdir publish
+          cp -R public/* publish/
+
+      - name: Publish to publish branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cd publish
+          git init
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git remote add origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
+
+          # Create or reset the publish branch
+          git checkout -B publish
+
+          git add .
+          git commit -m "Deploy from main @ $GITHUB_SHA" || echo "Nothing to commit"
+
+          git push --force origin publish
