@@ -1,0 +1,6 @@
+base_url = "https://nathanprice.dev"
+title = "Nathan Price"
+description = "Software Architect – Distributed Systems & Analytics Infrastructure"
+
+[extra]
+author_name = "Nathan Price"
