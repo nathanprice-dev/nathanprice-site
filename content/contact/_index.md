@@ -3,6 +3,6 @@ title = "Contact"
 template = "page.html"
 +++
 
-- Email: nathan@nathanprice.dev
-- LinkedIn: https://linkedin.com/in/nathanprice
-- GitHub: https://github.com/nathanprice-dev
+- Email: [nathan@nathanprice.dev](mailto:nathan@nathanprice.dev)
+- LinkedIn: [linkedin.com/in/nathanprice](https://linkedin.com/in/nathanprice)
+- GitHub: [github.com/nathanprice-dev](https://github.com/nathanprice-dev)
