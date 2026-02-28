@@ -5,6 +5,6 @@ template = "page.html"
 summary = "Deep dive into the HLL algorithm"
 +++
 
-Intro paragraph…
+Includes content on the datasketeches library.
 
 (Body of article goes here as placeholder text.)
