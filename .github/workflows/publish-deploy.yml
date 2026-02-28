@@ -3,13 +3,16 @@ name: Build and publish static site to publish branch
 on:
   push:
     branches: [ main ]
+  pull_request:
   workflow_dispatch:
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   build-and-publish:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
 
     steps:
@@ -48,3 +51,26 @@ jobs:
           git commit -m "Deploy from main @ $GITHUB_SHA" || echo "Nothing to commit"
 
           git push --force origin publish
+
+  deploy-preview:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Build static site
+        run: cargo run --release
+
+      - name: Deploy preview to Cloudflare Pages
+        uses: cloudflare/pages-action@v1
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: fe975b99e9ff1dcc8bbe03ec403b57ff
+          projectName: nathanprice-site
+          directory: public
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
